@@ -1,0 +1,13 @@
+{
+  "id": 1,
+  "firstName": "kousik",
+  "lastName": "dolui",
+  "emailId": "abc@gmail.com",
+  "phone": "1234",
+  "address": [
+    {
+      "addressId": 1,
+      "city": "kolkata"
+    }
+  ]
+}
