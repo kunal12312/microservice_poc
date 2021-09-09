@@ -1,0 +1,199 @@
+{
+	"info": {
+		"_postman_id": "a0e8818c-3256-4e67-96ec-dd8184af9c89",
+		"name": "Microservice_POC",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "POST",
+			"item": [
+				{
+					"name": "Department JWT Authentication",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\t\"userName\": \"Subhadip\",\r\n\t\"password\": \"Ayush12\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:9001/authenticate",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9001",
+							"path": [
+								"authenticate"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Department Details Save",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJTdWJoYWRpcCIsImV4cCI6MTYzMTEwMTgxMSwiaWF0IjoxNjMxMDgzODExfQ.mNT5ytOLgp0reYxHiKzP2POWs-KGAhrgUlb96xV_CFFmRWnlwlynq0AI46ofXR9cBOg8loLZ8Vjh62eSH4B3Pg",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"departmentName\": \"IT\",\r\n    \"departmentAddress\": \"Rampurhat\",\r\n    \"departmentCode\": \"IT-007\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:9191/departments/department",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9191",
+							"path": [
+								"departments",
+								"department"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Student JWT Authentication",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\t\"userName\": \"Subhadip\",\r\n\t\"password\": \"Ayush12\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:9002/authenticate",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9002",
+							"path": [
+								"authenticate"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Student Details Save",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJTdWJoYWRpcCIsImV4cCI6MTYzMTEwMTcyMywiaWF0IjoxNjMxMDgzNzIzfQ.NEeQbuHIJKusPLByTEfxF6BTTm9OFSVbv9fDiRfjRCbwedAzxSb8b8IRcra2IFzX1KhLlBkGN4J5jgP5XLO3AA",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"firstName\": \"Ayush\",\r\n    \"lastName\": \"Dutta\",\r\n    \"email\": \"abc@gmail.com\",\r\n    \"departmentId\": \"1\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:9002/students/student",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9002",
+							"path": [
+								"students",
+								"student"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "GET",
+			"item": [
+				{
+					"name": "Get Department Details",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJTdWJoYWRpcCIsImV4cCI6MTYzMTEwMTgxMSwiaWF0IjoxNjMxMDgzODExfQ.mNT5ytOLgp0reYxHiKzP2POWs-KGAhrgUlb96xV_CFFmRWnlwlynq0AI46ofXR9cBOg8loLZ8Vjh62eSH4B3Pg",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:9191/departments/department/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9191",
+							"path": [
+								"departments",
+								"department",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Student Details With Department Details",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJTdWJoYWRpcCIsImV4cCI6MTYzMTEwMTcyMywiaWF0IjoxNjMxMDgzNzIzfQ.NEeQbuHIJKusPLByTEfxF6BTTm9OFSVbv9fDiRfjRCbwedAzxSb8b8IRcra2IFzX1KhLlBkGN4J5jgP5XLO3AA",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:9002/students/student/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9002",
+							"path": [
+								"students",
+								"student",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
