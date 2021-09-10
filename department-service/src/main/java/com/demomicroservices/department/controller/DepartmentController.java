@@ -46,7 +46,7 @@ public class DepartmentController
 	
 	@GetMapping("/department/{id}")
 	@ApiOperation(value = "Get Department by id")
-	public Department getDepartmentById(@PathVariable("id") Long departmentId)
+	public Department finDepartmentById(@PathVariable("id") Long departmentId)
 	{
 		log.info("Inside findDepartmentById Method of DepartmentController");
 		return departmentService.finDepartmentById(departmentId);
