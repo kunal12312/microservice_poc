@@ -4,13 +4,12 @@ import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
-import org.junit.Rule;
 import org.junit.jupiter.api.Test;
+import org.junit.runner.RunWith;
 import org.mockito.ArgumentMatchers;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.junit.MockitoJUnit;
-import org.mockito.junit.MockitoRule;
+import org.mockito.junit.MockitoJUnitRunner;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 
 import com.demomicroservices.department.entity.Department;
@@ -18,19 +17,12 @@ import com.demomicroservices.department.repository.DepartmentRepository;
 import com.demomicroservices.department.service.DepartmentService;
 
 @DataJpaTest
+@RunWith(MockitoJUnitRunner.class)
 class TestDepartmentService {
-
-//	Department department = null;
 
 	@Mock
 	private DepartmentRepository departmentRepository;
 
-	@Rule
-	public MockitoRule rule = MockitoJUnit.rule();
-//	@Before
-//	public void setUp() {
-//		department = new Department();
-//	}
 
 	@InjectMocks
 	private DepartmentService departmentService;
