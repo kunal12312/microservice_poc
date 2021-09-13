@@ -16,10 +16,13 @@ import com.demomicroservices.department.dtoModel.Department;
 import com.demomicroservices.department.entity.DepartmentDto;
 import com.demomicroservices.department.service.DepartmentService;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 
 
 @RestController
+@Api(value="Department Service")
 @RequestMapping("/departments")
 @Slf4j
 public class DepartmentController 
@@ -30,6 +33,7 @@ public class DepartmentController
 	//Method to call the Service Class method to save department object in database
 	
 	@PostMapping("/department")
+	@ApiOperation(value = "Save Department")
 	public ResponseEntity<Department> saveDepartment(@Valid @RequestBody Department department)
 	{
 		log.info("Inside saveDepartment Method of DepartmentController");
@@ -42,7 +46,8 @@ public class DepartmentController
 	//Method to call the Service Class method to fetch the department details 
 	
 	@GetMapping("/department/{id}")
-	public Department finDepartmentById(@PathVariable("id") Long departmentId)
+	@ApiOperation(value = "Get Department by id")
+	public Department getDepartmentById(@PathVariable("id") Long departmentId)
 	{
 		log.info("Inside findDepartmentById Method of DepartmentController");
 		return departmentService.finDepartmentById(departmentId);

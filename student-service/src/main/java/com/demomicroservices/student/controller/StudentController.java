@@ -21,10 +21,13 @@ import com.demomicroservices.student.entity.StudentDto;
 import com.demomicroservices.student.service.StudentService;
 
 import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 
 
 @RestController
+@Api(value="Student Service")
 @RequestMapping("/students")
 @Slf4j
 public class StudentController 
@@ -35,6 +38,7 @@ public class StudentController
 	//Method to call the Service Class method to save student object in database 
 	
 	@PostMapping("/student")
+	@ApiOperation(value = "Save Student")
 	public  ResponseEntity<Student> saveStudent(@Valid @RequestBody Student student)
 	{
 		log.info("Inside saveStudent Method of StudentController");
@@ -49,6 +53,7 @@ public class StudentController
 	//Implementing CircuitBreaker using @CircuitBrreaker 
 	
 	@GetMapping("/student/{id}")
+	@ApiOperation(value = "Get Student By id")
 	@CircuitBreaker(name = "departmentService", fallbackMethod = "departmentServiceFallBackMethod")
 	public ResponseEntity<ResponseTemplateVO> getStudentWithDepartment(@PathVariable("id") Long studentId, @RequestHeader HttpHeaders headers) 
 	{
