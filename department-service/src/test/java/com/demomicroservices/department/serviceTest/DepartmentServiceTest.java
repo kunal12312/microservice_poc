@@ -1,4 +1,4 @@
-package com.demomicroservices.department;
+package com.demomicroservices.department.serviceTest;
 
 import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.verify;
@@ -18,11 +18,10 @@ import com.demomicroservices.department.service.DepartmentService;
 
 @DataJpaTest
 @RunWith(MockitoJUnitRunner.class)
-class TestDepartmentService {
+class DepartmentServiceTest {
 
 	@Mock
 	private DepartmentRepository departmentRepository;
-
 
 	@InjectMocks
 	private DepartmentService departmentService;
