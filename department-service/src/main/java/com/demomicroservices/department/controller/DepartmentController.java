@@ -12,7 +12,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.demomicroservices.department.entity.Department;
+import com.demomicroservices.department.dtoModel.Department;
+import com.demomicroservices.department.entity.DepartmentDto;
 import com.demomicroservices.department.service.DepartmentService;
 
 import io.swagger.annotations.Api;

@@ -1,6 +1,7 @@
 package com.demomicroservices.student.VO;
 
-import com.demomicroservices.student.entity.Student;
+import com.demomicroservices.student.dtoModel.Student;
+import com.demomicroservices.student.entity.StudentDto;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

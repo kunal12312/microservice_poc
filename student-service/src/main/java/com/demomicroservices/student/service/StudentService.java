@@ -1,6 +1,8 @@
 package com.demomicroservices.student.service;
 
 
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -10,7 +12,9 @@ import org.springframework.stereotype.Service;
 import com.demomicroservices.student.VO.Department;
 import com.demomicroservices.student.VO.ResponseTemplateVO;
 import com.demomicroservices.student.controller.DepartmentServiceProxy;
-import com.demomicroservices.student.entity.Student;
+import com.demomicroservices.student.dtoModel.Student;
+import com.demomicroservices.student.entity.StudentDto;
+import com.demomicroservices.student.mapper.StudentMapper;
 import com.demomicroservices.student.model.JWTRequest;
 import com.demomicroservices.student.model.JWTResponse;
 import com.demomicroservices.student.repository.StudentRepository;
@@ -23,6 +27,8 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class StudentService 
 {
+	@Autowired
+	private StudentMapper studentMapper;
 
 	@Autowired
 	private DepartmentServiceProxy departmentServiceProxy;
@@ -37,11 +43,14 @@ public class StudentService
 	private UserSecurityService userSecurityService;
 	
 	//Method to save student object in database using Spring Data JPA
-
+	
+	@Transactional
 	public Student saveStudent(Student student) 
 	{
 		log.info("Inside saveStudent Method of StudentService");
-		return studentRepository.save(student);
+		
+		StudentDto studentDto = studentRepository.save(studentMapper.modelToDto(student));
+		return studentMapper.dtoToModel(studentDto);
 	}
 	
 	
@@ -80,13 +89,13 @@ public class StudentService
 		System.out.println(authenticationToken);
 		
 		ResponseTemplateVO vo = new ResponseTemplateVO();
-		Student student = studentRepository.findByStudentId(studentId);
+		StudentDto studentDto = studentRepository.findByStudentId(studentId);
 		
 		//Calling the DEPARTMENT-SERVICE to get the department details with specified department ID
 		
-		Department department = departmentServiceProxy.finDepartmentById(authenticationToken, student.getDepartmentId());
+		Department department = departmentServiceProxy.finDepartmentById(authenticationToken, studentDto.getDepartmentId());
 		
-		vo.setStudent(student);
+		vo.setStudent(studentMapper.dtoToModel(studentDto));
 		vo.setDepartment(department);
 		
 		return ResponseEntity.status(HttpStatus.OK).body(vo);

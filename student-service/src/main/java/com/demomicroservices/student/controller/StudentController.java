@@ -16,7 +16,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.demomicroservices.student.VO.ResponseTemplateVO;
-import com.demomicroservices.student.entity.Student;
+import com.demomicroservices.student.dtoModel.Student;
+import com.demomicroservices.student.entity.StudentDto;
 import com.demomicroservices.student.service.StudentService;
 
 import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
