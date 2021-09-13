@@ -1,4 +1,4 @@
-package com.demomicroservices.department;
+package com.demomicroservices.department.serviceTest;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
