@@ -7,13 +7,11 @@ import com.demomicroservices.department.dtoModel.Department;
 import com.demomicroservices.department.entity.DepartmentDto;
 
 @Mapper(componentModel = "spring")
-public interface DepartmentMapper 
-{
+public interface DepartmentMapper {
 	DepartmentMapper MAPPER = Mappers.getMapper(DepartmentMapper.class);
-	
+
 	Department dtoToModel(DepartmentDto departmentDto);
-	
+
 	DepartmentDto modelToDto(Department department);
-	
 
 }

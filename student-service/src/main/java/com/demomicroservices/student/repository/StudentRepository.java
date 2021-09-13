@@ -6,8 +6,7 @@ import org.springframework.stereotype.Repository;
 import com.demomicroservices.student.entity.StudentDto;
 
 @Repository
-public interface StudentRepository extends JpaRepository<StudentDto, Long>
-{
+public interface StudentRepository extends JpaRepository<StudentDto, Long> {
 
 	StudentDto findByStudentId(Long studentId);
 

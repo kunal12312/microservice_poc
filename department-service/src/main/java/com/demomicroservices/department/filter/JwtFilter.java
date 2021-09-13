@@ -19,46 +19,41 @@ import com.demomicroservices.department.service.DepartmentSecurityService;
 import com.demomicroservices.department.utility.JwtUtility;
 
 @Component
-public class JwtFilter extends OncePerRequestFilter
-{
+public class JwtFilter extends OncePerRequestFilter {
 	@Autowired
 	private JwtUtility jwtUtility;
-	
+
 	@Autowired
 	private DepartmentSecurityService departmentSecurityService;
-	
+
 	@Override
 	protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
-			throws ServletException, IOException 
-	{
+			throws ServletException, IOException {
 		String authorization = request.getHeader("Authorization");
 		String token = null;
 		String userName = null;
-		
-		if(null != authorization && authorization.startsWith("Bearer "))
-		{
+
+		if (null != authorization && authorization.startsWith("Bearer ")) {
 			token = authorization.substring(7);
 			userName = jwtUtility.getUsernameFromToken(token);
 		}
-		
-		if(null != userName && null == SecurityContextHolder.getContext().getAuthentication())
-		{
+
+		if (null != userName && null == SecurityContextHolder.getContext().getAuthentication()) {
 			UserDetails userDetails = departmentSecurityService.loadUserByUsername(userName);
-			
-			if(jwtUtility.validateToken(token, userDetails))
-			{
-				UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken
-					= new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
-				
-				usernamePasswordAuthenticationToken.setDetails(
-						new WebAuthenticationDetailsSource().buildDetails(request));
-				
+
+			if (jwtUtility.validateToken(token, userDetails)) {
+				UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken = new UsernamePasswordAuthenticationToken(
+						userDetails, null, userDetails.getAuthorities());
+
+				usernamePasswordAuthenticationToken
+						.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
+
 				SecurityContextHolder.getContext().setAuthentication(usernamePasswordAuthenticationToken);
 			}
-			
+
 		}
-		
+
 		filterChain.doFilter(request, response);
-		
+
 	}
 }

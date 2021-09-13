@@ -18,20 +18,14 @@ public class Swagger2Config {
 	@Bean
 	public Docket api() {
 		return new Docket(DocumentationType.SWAGGER_2).select()
-				.apis(RequestHandlerSelectors
-						.basePackage("com.demomicroservices.student.controller"))
-				.paths(PathSelectors.regex("/.*"))
-				.build().apiInfo(apiEndPointsInfo());
+				.apis(RequestHandlerSelectors.basePackage("com.demomicroservices.student.controller"))
+				.paths(PathSelectors.regex("/.*")).build().apiInfo(apiEndPointsInfo());
 	}
 
 	private ApiInfo apiEndPointsInfo() {
 
-		return new ApiInfoBuilder().title("Spring Boot REST API")
-				.description("Student service REST API")
-				.contact(new Contact("Kousik Dolui", "localhost", "abc@gmail.com"))
-				.license("Apache 2.0")
-				.licenseUrl("http://www.apache.org/licenses/LICENSE-2.0.html")
-				.version("1.0.0")
-				.build();
+		return new ApiInfoBuilder().title("Spring Boot REST API").description("Student service REST API")
+				.contact(new Contact("Kousik Dolui", "localhost", "abc@gmail.com")).license("Apache 2.0")
+				.licenseUrl("http://www.apache.org/licenses/LICENSE-2.0.html").version("1.0.0").build();
 	}
 }

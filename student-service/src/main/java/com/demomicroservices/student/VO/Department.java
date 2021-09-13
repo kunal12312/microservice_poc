@@ -9,8 +9,7 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class Department 
-{
+public class Department {
 	private long departmentId;
 	private String departmentName;
 	private String departmentAddress;

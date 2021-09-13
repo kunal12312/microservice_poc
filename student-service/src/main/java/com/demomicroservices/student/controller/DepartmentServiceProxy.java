@@ -12,11 +12,10 @@ import com.demomicroservices.student.model.JWTRequest;
 import com.demomicroservices.student.model.JWTResponse;
 
 @FeignClient(name = "DEPARTMENT-SERVICE")
-public interface DepartmentServiceProxy 
-{
+public interface DepartmentServiceProxy {
 	@GetMapping("/departments/department/{id}")
 	Department finDepartmentById(@RequestHeader("Authorization") String header, @PathVariable("id") Long departmentId);
-	
+
 	@PostMapping("/authenticate")
 	JWTResponse authenticate(@RequestBody JWTRequest jwtRequest);
 }

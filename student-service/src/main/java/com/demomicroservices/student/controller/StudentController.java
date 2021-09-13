@@ -1,6 +1,5 @@
 package com.demomicroservices.student.controller;
 
-
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +16,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.demomicroservices.student.VO.ResponseTemplateVO;
 import com.demomicroservices.student.dtoModel.Student;
-import com.demomicroservices.student.entity.StudentDto;
 import com.demomicroservices.student.service.StudentService;
 
 import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
@@ -25,52 +23,50 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 
-
 @RestController
-@Api(value="Student Service")
+@Api(value = "Student Service")
 @RequestMapping("/students")
 @Slf4j
-public class StudentController 
-{	
+public class StudentController {
 	@Autowired
 	private StudentService studentService;
-	
-	//Method to call the Service Class method to save student object in database 
-	
+
+	// Method to call the Service Class method to save student object in database
+
 	@PostMapping("/student")
 	@ApiOperation(value = "Save Student")
-	public  ResponseEntity<Student> saveStudent(@Valid @RequestBody Student student)
-	{
+	public ResponseEntity<Student> saveStudent(@Valid @RequestBody Student student) {
 		log.info("Inside saveStudent Method of StudentController");
-		
+
 		Student savedStudent = studentService.saveStudent(student);
-		
+
 		return ResponseEntity.status(HttpStatus.CREATED).body(savedStudent);
 	}
-	
-	
-	//Method to call the Service Class method to fetch the student details with department details 
-	//Implementing CircuitBreaker using @CircuitBrreaker 
-	
+
+	// Method to call the Service Class method to fetch the student details with
+	// department details
+	// Implementing CircuitBreaker using @CircuitBrreaker
+
 	@GetMapping("/student/{id}")
 	@ApiOperation(value = "Get Student By id")
 	@CircuitBreaker(name = "departmentService", fallbackMethod = "departmentServiceFallBackMethod")
-	public ResponseEntity<ResponseTemplateVO> getStudentWithDepartment(@PathVariable("id") Long studentId, @RequestHeader HttpHeaders headers) 
-	{
+	public ResponseEntity<ResponseTemplateVO> getStudentWithDepartment(@PathVariable("id") Long studentId,
+			@RequestHeader HttpHeaders headers) {
 		log.info("Inside getStudentWithDepartment Method of StudentController");
-		
+
 		final String jwtToken = headers.getFirst(HttpHeaders.AUTHORIZATION);
-		
+
 		return studentService.getStudentWithDepartment(studentId, jwtToken);
 	}
-	
-	//Fall Back Method if department-service does not respond
-	
-	public ResponseEntity<String> departmentServiceFallBackMethod(Long studentId, HttpHeaders headers, Throwable exception)
-	{
-		//return "Department Service is down. Please try again later....";
-		
-		return ResponseEntity.status(HttpStatus.SERVICE_UNAVAILABLE).body("Department Service is Down. Please try again later..!!");
+
+	// Fall Back Method if department-service does not respond
+
+	public ResponseEntity<String> departmentServiceFallBackMethod(Long studentId, HttpHeaders headers,
+			Throwable exception) {
+		// return "Department Service is down. Please try again later....";
+
+		return ResponseEntity.status(HttpStatus.SERVICE_UNAVAILABLE)
+				.body("Department Service is Down. Please try again later..!!");
 	}
-	
+
 }

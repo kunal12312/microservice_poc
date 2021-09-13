@@ -6,8 +6,7 @@ import org.springframework.stereotype.Repository;
 import com.demomicroservices.department.entity.DepartmentDto;
 
 @Repository
-public interface DepartmentRepository extends JpaRepository<DepartmentDto, Long>
-{
+public interface DepartmentRepository extends JpaRepository<DepartmentDto, Long> {
 
 	DepartmentDto findByDepartmentId(Long departmentId);
 

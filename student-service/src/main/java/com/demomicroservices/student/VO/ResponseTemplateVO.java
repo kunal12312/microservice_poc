@@ -1,7 +1,6 @@
 package com.demomicroservices.student.VO;
 
 import com.demomicroservices.student.dtoModel.Student;
-import com.demomicroservices.student.entity.StudentDto;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -14,9 +13,8 @@ import lombok.ToString;
 @ToString
 @AllArgsConstructor
 @NoArgsConstructor
-public class ResponseTemplateVO 
-{
+public class ResponseTemplateVO {
 	private Student student;
 	private Department department;
-	
+
 }
