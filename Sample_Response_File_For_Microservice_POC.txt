@@ -1,0 +1,72 @@
+# Sample Response For All The Endpoints 
+
+1. Department JWT Authentication
+
+URL: - http://localhost:9001/authenticate
+Response Body: - 
+{
+    "jwtToken": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJTdWJoYWRpcCIsImV4cCI6MTYzMTEwMTgxMSwiaWF0IjoxNjMxMDgzODExfQ.mNT5ytOLgp0reYxHiKzP2POWs-KGAhrgUlb96xV_CFFmRWnlwlynq0AI46ofXR9cBOg8loLZ8Vjh62eSH4B3Pg"
+}
+
+2. Department Details Save 
+
+URL: - http://localhost:9191/departments/department
+Response Body: - 
+{
+    "departmentId": 1,
+    "departmentName": "IT",
+    "departmentAddress": "Rampurhat",
+    "departmentCode": "IT-007"
+}
+
+3. Student JWT Authentication
+
+URL: - http://localhost:9002/authenticate
+Response Body: -
+{
+    "jwtToken": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJTdWJoYWRpcCIsImV4cCI6MTYzMTEwMTcyMywiaWF0IjoxNjMxMDgzNzIzfQ.NEeQbuHIJKusPLByTEfxF6BTTm9OFSVbv9fDiRfjRCbwedAzxSb8b8IRcra2IFzX1KhLlBkGN4J5jgP5XLO3AA"
+}
+
+4. Student Details Save 
+
+URL: - http://localhost:9002/students/student
+Response Body: -
+{
+    "studentId": 1,
+    "firstName": "Ayush",
+    "lastName": "Dutta",
+    "email": "abc@gmail.com",
+    "departmentId": 1
+}
+
+5. Get Departmnet Details
+
+URL: - http://localhost:9191/departments/department/1
+Response Body: -
+{
+    "departmentId": 1,
+    "departmentName": "IT",
+    "departmentAddress": "Rampurhat",
+    "departmentCode": "IT-007"
+}
+
+6. Get Student Details With Department Details
+
+URL: - http://localhost:9191/students/student/1
+Response Body: -
+{
+    "student": {
+        "studentId": 1,
+        "firstName": "Subhadip",
+        "lastName": "Dutta",
+        "email": "abc@gmail.com",
+        "departmentId": 1
+    },
+    "department": {
+        "departmentId": 1,
+        "departmentName": "IT",
+        "departmentAddress": "Rampurhat",
+        "departmentCode": "IT-007"
+    }
+}
+
