@@ -15,15 +15,18 @@ public class UserSecurityService implements UserDetailsService
 	public UserDetails loadUserByUsername(String userName) throws UsernameNotFoundException 
 	{
 		//Logic to get the user from the Database
-		
-		if(userName.equals("Subhadip"))
-		{
-			return new User("Subhadip", "Ayush12", new ArrayList<>());
+		if(userName!=null && !userName.isEmpty()) {
+			if(userName.equals("Subhadip"))
+			{
+				return new User("Subhadip", "Ayush12", new ArrayList<>());
+			}
+			else 
+			{
+				throw new UsernameNotFoundException("User not found..!!");
+			}
 		}
-		else 
-		{
-			throw new UsernameNotFoundException("User not found..!!");
-		}
+		else
+			throw new UsernameNotFoundException("Username is empty..!!");
 		
 	}
 

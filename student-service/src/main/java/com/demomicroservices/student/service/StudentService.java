@@ -83,17 +83,16 @@ public class StudentService
 		Student student = studentRepository.findByStudentId(studentId);
 		
 		//Calling the DEPARTMENT-SERVICE to get the department details with specified department ID
-		
-		Department department = departmentServiceProxy.finDepartmentById(authenticationToken, student.getDepartmentId());
-		
-		vo.setStudent(student);
-		vo.setDepartment(department);
-		
-		return ResponseEntity.status(HttpStatus.OK).body(vo);
-		
+		if(student!=null) {
+			Department department = departmentServiceProxy.finDepartmentById(authenticationToken, student.getDepartmentId());
+			
+			vo.setStudent(student);
+			vo.setDepartment(department);
+			
+			return ResponseEntity.status(HttpStatus.OK).body(vo);
+		}
+		return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
 		
 	}
-	
-	
 	
 }
